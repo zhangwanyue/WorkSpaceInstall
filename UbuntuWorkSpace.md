@@ -16,7 +16,7 @@ sudo apt-get install git
 
 ```
 sudo apt-get install openssh-server
-ssh-keygen -t rsa -C "744404875@qq.com"
+ssh-keygen -t rsa -C "xxx@qq.com"
 ```
 
 ### chrome
