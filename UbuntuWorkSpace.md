@@ -192,6 +192,8 @@ export MAVEN_HOME=/usr/local/bin/apache-maven-*
 export PATH=$MAVEN_HOME/bin:$PATH
 ```
 
+如果使用的是`sudo apt-get install maven`安装的maven，那配置文件在`/etc/maven`下。
+
 ### nodejs & npm
 
 * nodejs官网下载
