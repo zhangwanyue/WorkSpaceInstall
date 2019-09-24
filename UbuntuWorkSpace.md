@@ -224,14 +224,25 @@ sudo apt-get install mysql-client
 sudo apt-get install mysql-workbench
 ```
 
-* 设置权限: `sudo mysql_secure_installation`
+* 初始登录
 
-* 登录: `sudo mysql -u root -p`
+In MySQL，by default, the username is `root` and there's no password.
+所以安装完成后可以使用`sudo mysql -u root`登录。
 
-* 解决`Access denied for user 'root'@'localhost'`问题:
+* 设置权限
 
-参考链接:https://stackoverflow.com/a/53487418
+```
+sudo mysql_secure_installation
+```
 
+设置完之后使用新密码登录：
+```
+sudo mysql -u root -p
+```
+
+但是这样默认设置的是使用的`auth_socket`方式，这样的话必须使用sudo，并且会遇到一个很神奇的问题：`sudo mysql -u root -p`登录正常，`sudo mysql -u root -p -h 127.0.0.1`报错`Access denied for user 'root'@'localhost'`，而且同样的原因导致mysql workbench无法连接到MySQL.
+
+解决办法：
 ```
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'xxx';
 FLUSH PRIVILEGES;（该条命令的作用是：将grant tables的信息提取到内存里）
@@ -257,13 +268,38 @@ SHOW VARIABLES LIKE 'validate_password%';
 set global validate_password_policy=0;
 ```
 
-* 新建用户
+* 新建用户，并赋予表权限
 
-```
-CREATE USER 'vera'@'localhost' IDENTIFIED BY 'xxx';
-```
+`CREATE USER 'vera'@'localhost' IDENTIFIED BY 'xxx'（用户密码）;`
+这个创建出来的用户只能在localhost（本地）连接数据库，如果想要设置用户可以远程访问数据库：
+`CREATE USER 'vera'@'%' IDENTIFIED BY 'xxx'（用户密码）;`
 
 将xxx数据库的各种权利赋予vera用户:
+`GRANT ALL ON xxx.* TO 'vera'@'localhost';`
+
+create user syntax: https://dev.mysql.com/doc/refman/5.7/en/create-user.html
+grant syntax:
+https://dev.mysql.com/doc/refman/5.7/en/grant.html
+
+
+* 查看用户权限
+
 ```
-GRANT ALL ON xxx.* TO 'vera'@'localhost';
+show grants for 'vera'@'%';
 ```
+
+### electron-ssr
+
+首先向这个项目的开发者致敬。
+
+项目链接:https://github.com/qingshuisiyuan/electron-ssr-backup
+下载链接:https://github.com/qingshuisiyuan/electron-ssr-backup/releases
+ubuntu安装配置参考:https://github.com/qingshuisiyuan/electron-ssr-backup/blob/master/Ubuntu.md
+
+* 安装依赖:
+
+`sudo apt-get install libcanberra-gtk-module libcanberra-gtk3-module gconf2 gconf-service libappindicator1`
+
+* 依赖如果安装报错（好像是少一个gconf库）
+
+可以自行安装gconf，或者直接`sudo apt-get --fix-broken install`
