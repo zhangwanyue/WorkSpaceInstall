@@ -303,3 +303,20 @@ ubuntu安装配置参考:https://github.com/qingshuisiyuan/electron-ssr-backup/b
 * 依赖如果安装报错（好像是少一个gconf库）
 
 可以自行安装gconf，或者直接`sudo apt-get --fix-broken install`
+
+### FoxitReader
+
+福昕阅读器用来阅读PDF文档很棒，而且有Linux版本，优秀
+
+* 官网下载：
+
+https://www.foxitsoftware.cn/pdf-reader/
+
+* 解压安装
+
+`sudo tar xvzf FoxitReader.enu.setup.2.4.4.0911.x64.run.tar.gz`
+
+`sudo ./FoxitReader.xxx.run`
+
+然后根据安装向导操作安装完成就可以了
+
