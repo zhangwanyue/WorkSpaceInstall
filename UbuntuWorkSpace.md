@@ -320,3 +320,26 @@ https://www.foxitsoftware.cn/pdf-reader/
 
 然后根据安装向导操作安装完成就可以了
 
+### Golang
+
+* 下载：
+
+`curl -O https://golang.org/dl/go1.13.5.linux-amd64.tar.gz`
+
+* 解压安装
+
+```
+tar -C /usr/local/installedApp -xzf go1.13.5.linux-amd64.tar.gz
+vim ~/.bashrc
+```
+
+写入：
+```
+export GO_HOME=/usr/local/installedApp/go/bin
+export PATH=${GO_HOME}:$PATH
+```
+
+```
+source ~/.bashrc
+go version
+```
