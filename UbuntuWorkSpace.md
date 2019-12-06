@@ -343,3 +343,13 @@ export PATH=${GO_HOME}:$PATH
 source ~/.bashrc
 go version
 ```
+
+#### go 使用 proxy
+
+1.首先用shadowsocks做socks5代理，然后用privoxy将socks5代理转换成http和https。
+
+2.`http_proxy=127.0.0.1:8080 go get xxx`
+
+为避免每次都要输入proxy，可以使用别名：
+`alias go='http_proxy=127.0.0.1:8080 go'`
+
