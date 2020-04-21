@@ -194,6 +194,20 @@ export PATH=$MAVEN_HOME/bin:$PATH
 
 如果使用的是`sudo apt-get install maven`安装的maven，那配置文件(比如`settings.xml`)在`/etc/maven`下。
 
+* maven设置镜像
+
+在`~/.m2/settings.xml`中设置aliyun的镜像:
+```
+  <mirrors>
+    <mirror>
+        <id>aliyunmaven</id>
+        <mirrorOf>central</mirrorOf>
+        <name>aliyun maven</name>
+        <url>https://maven.aliyun.com/repository/public </url>
+    </mirror>
+  </mirrors>
+```
+
 ### nodejs & npm
 
 * nodejs官网下载
