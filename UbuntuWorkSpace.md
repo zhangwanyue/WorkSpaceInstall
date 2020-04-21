@@ -358,6 +358,7 @@ go version
 * 安装
 
 官网下载`xxx.tar.gz`
+
 `sudo tar -xvf xxx.tar.gz -C /usr/local/installedApp`
 
 * 运行
