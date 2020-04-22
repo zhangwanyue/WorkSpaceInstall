@@ -393,3 +393,47 @@ StartupNotify=true
 Categories=TextEditor;Development;Utility;
 MimeType=text/plain;
 ```
+
+### redis
+
+#### 安装
+
+```
+$ sudo apt-get update
+$ sudo apt-get install redis-server
+```
+
+* 安装位置：/usr/bin
+
+* 客户端：redis-cli
+
+* 服务器端：redis-server
+
+#### 检查Redis服务器系统进程
+
+```
+$ ps -aux|grep redis
+redis 4162 0.1 0.0 10676 1420 ? Ss 23:24 0:00 /usr/bin/redis-server /etc/redis/redis.conf
+conan 4172 0.0 0.0 11064 924 pts/0 S+ 23:26 0:00 grep --color=auto redis
+```
+
+#### 通过进程号令检查Redis服务器状态\(redis-server:127.0.0.1:6379，6379是默认端口\)
+
+```
+$ netstat -nlt|grep 6379
+tcp 0 0 127.0.0.1:6379 0.0.0.0:* LISTEN
+```
+
+#### 通过启动命令检查Redis服务器状态
+
+* init.d目录包含许多系统各种服务的启动和停止脚本。它控制着所有从acpid到x11-common的各种事务。
+
+```
+$ sudo /etc/init.d/redis-server status
+redis-server is running
+```
+
+#### 启动除127.0.0.1之外的redis
+```
+redis-cli -h xxx.xxx.xxx.xxx
+```
