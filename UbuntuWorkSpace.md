@@ -381,7 +381,7 @@ go version
 
 * 创建桌面图标
 
-`vim /usr/share/applications/VSCode.desktop`
+`sudo vim /usr/share/applications/VSCode.desktop`
 ```
 [Desktop Entry]
 Name=Visual Studio Code
@@ -437,3 +437,31 @@ redis-server is running
 ```
 redis-cli -h xxx.xxx.xxx.xxx
 ```
+
+### Postman
+
+* 安装
+
+官网下载`xxx.tar.gz`
+
+`sudo tar -xvf xxx.tar.gz -C /usr/local/installedApp`
+
+* 运行
+
+`./Postman`
+
+* 创建桌面图标
+
+`sudo vim /usr/share/applications/Postman.desktop`
+```
+[Desktop Entry]
+Name=Postman
+Comment=Multi-platform code editor for Linux
+Exec=/usr/local/installedApp/Postman/Postman
+Icon=/usr/local/installedApp/Postman/app/resources/app/assets/icon.png
+Type=Application
+StartupNotify=true
+Categories=TextEditor;Development;Utility;
+MimeType=text/plain;
+```
+
