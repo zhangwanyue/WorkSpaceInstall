@@ -465,3 +465,18 @@ Categories=TextEditor;Development;Utility;
 MimeType=text/plain;
 ```
 
+### V2rayL
+
+* 项目地址
+
+https://github.com/jiangxufeng/v2rayL
+
+* 安装
+
+`bash <(curl -s -L http://dl.thinker.ink/install.sh)`
+
+解析文件下载直链服务可能出现500，也下载从这里下载：https://www.lanzous.com/iaynbud
+
+下载文件至本地后，解压运行
+
+`./install.sh`
