@@ -1,4 +1,4 @@
- # ubuntu 16.04/18.04 install
+# ubuntu 16.04/18.04 install
 
 ### vim
 
