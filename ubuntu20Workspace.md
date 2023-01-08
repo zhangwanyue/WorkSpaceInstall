@@ -25,10 +25,12 @@ tsinghua: https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
 
 一定要记得 sudo apt-get update，不然装软件都会出问题（版本不对）
 
-# vim & git 
+# vim 
 sudo apt-get install vim
 
+# git
 sudo apt-get install git
+初始化配置: https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE
 
 # ssh
 参考: https://zhuanlan.zhihu.com/p/146976128
@@ -45,8 +47,19 @@ sudo apt-get install openssh-server
 # chrome
 ```
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dkpg -i xxx.deb
+sudo dpkg -i xxx.deb
 ```
+# Microsoft edge
+官网下载deb安装包: https://www.microsoftedgeinsider.com/en-us/
+sudo dpkg -i xxx.deb
+
+将edge添加到桌面Favorite后发现，这个应用没有图标，使用的默认的小工具图标，手动来修改下:
+sudo vim /usr/share/applications/microsoft-edge-beta.desktop
+修改Icon一行指向你下载的edge的图标，比如我的是:
+```
+Icon=/usr/local/installedApp/edge-logo.jpeg
+```
+然后将该应用Remove From Favourite并重新添加到Favourite就好了
 
 # java 
 
