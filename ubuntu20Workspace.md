@@ -11,11 +11,21 @@ sudo update-grub
 # 连接第二块屏幕黑屏
 Display里，修改第二块屏幕的refresh rate
 
+# 链接第二块屏幕，第一快屏幕闪烁
+重新调节连接第二块屏幕时第一块屏幕的缩放比
+
 # 屏幕亮度闪烁
 power->关闭 automatic brightness
 
 # tweak
 sudo apt-get install gnome-tweak-tool
+
+# 担心自动snap更新导致的问题
+因为本机和一些高版本的gnome有一些不兼容，会导致黑屏，所以停止更新snap包
+`snap refresh --hold`
+
+参考: https://ubuntuhandbook.org/index.php/2022/11/turn-off-automatic-updates-snap-apps/
+https://snapcraft.io/docs/keeping-snaps-up-to-date
 
 # apt-get add aliyun & tsinghua source
 aliyun: https://developer.aliyun.com/mirror/ubuntu/
@@ -161,3 +171,9 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/c
 
 # 隐藏桌面的Home和Trash图标
 在Activities中找到Extension，点击Desktop Icons前面的齿轮图标，在新打开的窗口中，关闭'Show the personal folder in the desktop'和'Show the trash icon in the desktop'
+
+# 视频播放器
+推荐使用 SMPlayer，可以加速播放，并且内置了各种解码器，不需要再额外安装解码器
+`sudo apt-get install smplayer`
+使用的时候，在`Options->Preference`中可以看到加速减速的快捷键是'['和']'，可以自行修改
+
