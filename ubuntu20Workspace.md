@@ -177,3 +177,4 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/c
 `sudo apt-get install smplayer`
 使用的时候，在`Options->Preference`中可以看到加速减速的快捷键是'['和']'，可以自行修改
 
+# docker
