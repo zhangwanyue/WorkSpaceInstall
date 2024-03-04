@@ -178,3 +178,99 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/c
 使用的时候，在`Options->Preference`中可以看到加速减速的快捷键是'['和']'，可以自行修改
 
 # docker
+参考链接：https://yeasy.gitbook.io/docker_practice/install/ubuntu#shi-yong-apt-an-zhuang
+## 使用APT安装
+* 由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书
+```
+$ sudo apt-get update
+
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+* 为了确认所下载软件包的合法性，需要添加软件源的 GPG 密钥
+鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看
+```
+$ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# 官方源
+# $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+* 向 sources.list 中添加 Docker 软件源
+```
+$ echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+
+# 官方源
+# $ echo \
+#   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+#   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+* 安装 Docker
+```
+$ sudo apt-get update
+
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+## 使用脚本自动安装
+在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Ubuntu 系统上可以使用这套脚本安装，另外可以通过 --mirror 选项使用国内源进行安装：
+```
+# $ curl -fsSL test.docker.com -o get-docker.sh
+$ curl -fsSL get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh --mirror Aliyun
+# $ sudo sh get-docker.sh --mirror AzureChinaCloud
+```
+执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker 的稳定(stable)版本安装在系统中。
+## 启动 Docker
+```
+$ sudo systemctl enable docker
+$ sudo systemctl start docker
+```
+## 建立 docker 用户组
+默认情况下，docker 命令会使用 Unix socket 与 Docker 引擎通讯。而只有 root 用户和 docker 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 root 用户。因此，更好地做法是将需要使用 docker 的用户加入 docker 用户组。
+* 建立 docker 组：
+`$ sudo groupadd docker`
+* 将当前用户加入 docker 组：
+`$ sudo usermod -aG docker $USER`
+* 查看 docker 组的用户:
+`$ getent group docker`
+退出当前终端并重新登录，进行如下测试。
+## 测试 Docker 是否安装正确
+```
+$ docker run --rm hello-world
+
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+b8dfde127a29: Pull complete
+Digest: sha256:308866a43596e83578c7dfa15e27a73011bdd402185a84c5cd7f32a88b501a24
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
+若能正常输出以上信息，则说明安装成功。
+
+
