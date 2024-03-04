@@ -273,4 +273,33 @@ For more examples and ideas, visit:
 ```
 若能正常输出以上信息，则说明安装成功。
 
+## docker 镜像加速
+* 国内镜像加速器
+阿里云(需要登录个人帐号获取)：
+https://cr.console.aliyun.com/cn-hangzhou/instances
+点击管理控制台->登录帐号(淘宝帐号)->左侧镜像工具->镜像加速器->复制加速器地址
+网易云：
+https://hub-mirror.c.163.com
+百度云：
+https://mirror.baidubce.com
+
+* 首先执行以下命令，查看是否在 docker.service 文件中配置过镜像地址。
+`$ systemctl cat docker | grep '\-\-registry\-mirror'`
+如果该命令有输出，那么请执行 `$ systemctl cat docker` 查看 `ExecStart=` 出现的位置，修改对应的文件内容去掉 `--registry-mirror` 参数及其值，并按接下来的步骤进行配置。
+如果以上命令没有任何输出，那么就可以在 `/etc/docker/daemon.json` 中写入如下内容（如果文件不存在请新建该文件）：
+```
+{
+  "registry-mirrors": [
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com"
+  ]
+}
+```
+
+* 重启服务
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+```
+
 
