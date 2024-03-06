@@ -44,14 +44,21 @@ sudo apt-get install git
 
 # ssh
 参考: https://zhuanlan.zhihu.com/p/146976128
+
 sudo apt-get install openssh-server
+
 装好后默认自动启动ssh服务
+
 查看ssh状态: sudo service ssh status
+
 连接ssh: `ssh username@ip_address`
+
 查看ip: ip -4 address
-启用ssh: sudo systemctl disable --now ssh
+
+启用ssh: sudo systemctl enable --now ssh
 或者: sudo service ssh start
-禁用ssh: sudo systemctl enable --now ssh
+
+禁用ssh: sudo systemctl disable --now ssh
 或者: sudo service ssh stop
 
 # chrome
