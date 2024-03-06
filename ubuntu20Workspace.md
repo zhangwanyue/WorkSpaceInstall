@@ -1,5 +1,6 @@
 # keyboard
 * 安装时
+
 在 Try or Install Ubuntu 的 GRUB 界面不要选择，直接按 e，进入编辑启动引导配置：
 
 将 `quite splash --` 删除 `--` 并加上 `i8042.dumbkbd` ，变成 `quite splash i8042.dumbkbd` 。
