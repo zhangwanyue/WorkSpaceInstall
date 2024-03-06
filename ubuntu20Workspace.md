@@ -170,7 +170,7 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/c
 默认生成到`~/.ssh`中，找到`id_rsa.pub`放到Github的`SSH and GPG keys`中
 
 # 隐藏桌面的Home和Trash图标
-在Activities中找到Extension，点击Desktop Icons前面的齿轮图标，在新打开的窗口中，关闭'Show the personal folder in the desktop'和'Show the trash icon in the desktop'
+在Applications中找到Extension，点击Desktop Icons前面的齿轮图标，在新打开的窗口中，关闭'Show the personal folder in the desktop'和'Show the trash icon in the desktop'
 
 # 视频播放器
 推荐使用 SMPlayer，可以加速播放，并且内置了各种解码器，不需要再额外安装解码器
