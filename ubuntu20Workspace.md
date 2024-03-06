@@ -1,8 +1,18 @@
 # keyboard
-/etc/default/grub
-i8042.dumbkbd
-`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i8042.dumbkbd"`
-sudo update-grub
+* 安装时
+在 Try or Install Ubuntu 的 GRUB 界面不要选择，直接按 e，进入编辑启动引导配置：
+
+将 `quite splash --` 删除 `--` 并加上 `i8042.dumbkbd` ，变成 `quite splash i8042.dumbkbd` 。
+
+然后保存退出，继续安装就好了。
+
+* 安装后
+
+`sudo vim /etc/default/grub`
+
+在 `quite splash` 后面加上 `i8042.dumbkbd` ，变成 `GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i8042.dumbkbd"`
+
+然后 `sudo update-grub` 就可以啦
 
 # 开机黑屏
 按 Fn+F2 进入grub中，输入用户名密码进入账户
